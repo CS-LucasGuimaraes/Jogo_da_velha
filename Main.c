@@ -2,18 +2,12 @@
 Tic Tac Toe
 */
 
-// To-do:
-// Limpar e traduzir função joga
-// Limpar e traduzir função verifica
-// Adicionar IA e criar menu "Game Mode"
-// Adicionar função para adicionar nome dos jogadores
-// Adicionar ScoreBoard
-
 #include <stdio.h>
 #include <stdlib.h>
 
 void joga(char matriz[3][3], char jogador, int config)
 {
+    char auxiliar_board[3][3];
     int posicao;
     printf("Jogador %c, escolha sua jogada: ", jogador);
     
@@ -112,13 +106,22 @@ void joga(char matriz[3][3], char jogador, int config)
                     printf("Jogada invalida!! Escolha outra jogada: ");
                     continue;}
                     }
+            else if (posicao == 0)
+                {
+                printf("\n\nEsse eh modelo dos campos:\n");
+                ChangeBoardSet(auxiliar_board, config);
+                printboard(auxiliar_board);
+                printf("\n\n");
+                printboard(matriz);
+                printf("Jogador %c, escolha sua jogada: ", jogador);
+                continue;}            
             else{
                 printf("Jogada invalida!! Escolha outra jogada: ");
                 continue;}
         }
     }
     
-    if (config == 2)
+    else if (config == 2)
     {
         while(1)
         {
@@ -213,6 +216,15 @@ void joga(char matriz[3][3], char jogador, int config)
                     printf("Jogada invalida!! Escolha outra jogada: ");
                     continue;}
                     }
+            else if (posicao == 0)
+                {
+                printf("\n\nEsse eh modelo dos campos:\n");
+                ChangeBoardSet(auxiliar_board, config);
+                printboard(auxiliar_board);
+                printf("\n\n");
+                printboard(matriz);
+                printf("Jogador %c, escolha sua jogada: ", jogador);
+                continue;}
             else{
                 printf("Jogada invalida!! Escolha outra jogada: ");
                 continue;}
@@ -377,7 +389,7 @@ int main()
             printf("\n Esse eh o modelo dos campos\n");
             ChangeBoardSet(board, storeBoardConfig);
             printboard(board);
-
+            printf(" Digite 0 a qualquer momento para mostrar o modelo novamente.\n");
             ChangeBoardSet(board, 0);
             do
             {
