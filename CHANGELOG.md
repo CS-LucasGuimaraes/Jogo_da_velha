@@ -3,11 +3,15 @@
 TODAS as modificações notaveis deste projeto serão incluídas nesse documento.
 Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
 
-## [NÃO PUBLICADO] - XXXX-XX-XX
+## [v0.5.0] - 2023-05-08
 
 ### Modificado
- - Função verifica traduzida completamente e renomeada para "check"
+ - Melhorias na interface.
+ - Função verifica traduzida completamente e renomeada para "check".
  - Função check refurmulada para reduzir o código, facilitar implementações futuras e reduzir a quantidade de IFs.
+
+ ### Obsoleto
+ - Função que mostra novamente o modelo de campos ao digitar 0.
 
 ## [v0.4.0] - 2023-05-08
 
@@ -24,7 +28,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 ### Corrigido
  - Funções "joga" e "verifica" movidas para baixo no código para evitar erro de variavel implícita.
 
-## [v0.3] - 2023-05-07
+## [v0.3.0] - 2023-05-07
 
 ### Adicionado
  - CHANGELOG.md
@@ -33,7 +37,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 ### Modificado
  - Lista de afazeres passou a ser um arquivo dedicado <TODO.md>
 
-## [v0.2] - 2023-04-25  
+## [v0.2.0] - 2023-04-25  
  
 ### Adicionado
  - Menu.
@@ -43,7 +47,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 ### Modificado
  - Limpeza do código e tradução de algumas variáveis para o inglês.
 
-## [v0.1] - 2023-04-22  
+## [v0.1.0] - 2023-04-22  
 
 ### Adicionado
  - Adicionado funcionamento padrão do jogo de PvP.  

@@ -114,7 +114,7 @@ void playersName()
 void printBoardSet(int config)
 {
     char board[3][3];
-    printf("\n\nEsse eh modelo dos campos:\n");
+    printf("Esse eh modelo dos campos:\n");
     ChangeBoardSet(board, config);
     printboard(board);
     printf("\n");
@@ -152,6 +152,7 @@ void play(char board[3][3], char player, int config)
             if (move_completed == 1) break;
             else if (pos == 0)
             {
+                system("clear||cls");
                 printBoardSet(config);
                 printboard(board);
                 printf("Jogador %c, escolha sua jogada: ", player);
@@ -165,23 +166,31 @@ int check(char board[3][3], char player, int identifier)
 {
     int line = 0;
     int column = 0; 
+    int main_diagonal = 0;
+    int sec_diagonal = 0;
     for (int i =0; i <3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             if (board[i][j] == player) line++;
             if (board[j][i] == player) column++;
+            if (board[j][j] == player) main_diagonal++;
+            if (i+j==2) if (board[i][j] == player) sec_diagonal++;
+        }   
+        if (line == 3 || column == 3 || main_diagonal == 3 || sec_diagonal == 3) 
+        {
+            return identifier;  
         }
-        if (line == 3 || column == 3) break;
-        else {line = 0; column = 0;}
-    }
 
-    if ((line == 3) || (column == 3)) return identifier;
-    else if(board[0][0] == player && board[1][1] == player && board[2][2] == player) //main diagonal
-        return identifier;
-    else if(board[0][2] == player && board[1][1] == player && board[2][0] == player) //secundary diagonal
-        return identifier;
-    else return 0; 
+        else 
+        {
+            line = 0;
+            column = 0;
+            main_diagonal = 0;
+            sec_diagonal = 0; 
+        }
+    }
+    return 0;
 }
 
 int main()
@@ -207,12 +216,11 @@ int main()
             int PlayCount = 1;
             int WinState = 0;
             char board[3][3];
-            system("clear||cls");
-            printBoardSet(storeBoardConfig);
-            printf(" Digite 0 a qualquer momento para mostrar o modelo novamente.\n\n");
             ChangeBoardSet(board, 0);
             do
             {
+                system("clear||cls");
+                printBoardSet(storeBoardConfig);
                 printboard(board);
                 int par = PlayCount % 2 == 0;
                 if (par){
