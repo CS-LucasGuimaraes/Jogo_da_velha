@@ -111,9 +111,17 @@ void playersName()
     //code
 }
 
+void printBoardSet(int config)
+{
+    char board[3][3];
+    printf("\n\nEsse eh modelo dos campos:\n");
+    ChangeBoardSet(board, config);
+    printboard(board);
+    printf("\n");
+}
+
 void joga(char matriz[3][3], char jogador, int config)
 {
-    char auxiliar_board[3][3];
     int posicao;
     printf("Jogador %c, escolha sua jogada: ", jogador);
     
@@ -214,10 +222,7 @@ void joga(char matriz[3][3], char jogador, int config)
                     }
             else if (posicao == 0)
                 {
-                printf("\n\nEsse eh modelo dos campos:\n");
-                ChangeBoardSet(auxiliar_board, config);
-                printboard(auxiliar_board);
-                printf("\n\n");
+                printBoardSet(config);
                 printboard(matriz);
                 printf("Jogador %c, escolha sua jogada: ", jogador);
                 continue;}            
@@ -324,10 +329,7 @@ void joga(char matriz[3][3], char jogador, int config)
                     }
             else if (posicao == 0)
                 {
-                printf("\n\nEsse eh modelo dos campos:\n");
-                ChangeBoardSet(auxiliar_board, config);
-                printboard(auxiliar_board);
-                printf("\n\n");
+                printBoardSet(config);
                 printboard(matriz);
                 printf("Jogador %c, escolha sua jogada: ", jogador);
                 continue;}
@@ -386,10 +388,8 @@ int main()
             int WinState = 0;
             char board[3][3];
             system("clear||cls");
-            printf("\n Esse eh o modelo dos campos\n");
-            ChangeBoardSet(board, storeBoardConfig);
-            printboard(board);
-            printf(" Digite 0 a qualquer momento para mostrar o modelo novamente.\n");
+            printBoardSet(storeBoardConfig);
+            printf(" Digite 0 a qualquer momento para mostrar o modelo novamente.\n\n");
             ChangeBoardSet(board, 0);
             do
             {

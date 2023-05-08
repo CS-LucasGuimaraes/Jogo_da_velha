@@ -5,6 +5,14 @@ TODAS as modificações notaveis deste projeto serão incluídas nesse documento
 
 Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [NÃO PUBLICADO] - XXXX-XX-XX
+
+## Adicionado
+ - Função dedicada para mostrar o modelo de campos.
+
+ ## Alterado
+ - Função printBoardSet aplicada onde possível.
+
 ## [0.3.1] - 2023-05-07
 
 ### Corrigido
