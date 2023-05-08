@@ -161,27 +161,27 @@ void play(char board[3][3], char player, int config)
     }    
 }
 
-int verifica(char matriz[3][3], char jogador, int identificador)
+int check(char board[3][3], char player, int identifier)
 {
-    if (matriz[0][0] == jogador && matriz[1][0] == jogador && matriz[2][0] == jogador)
-        return identificador;
-    else if(matriz[0][1] == jogador && matriz[1][1] == jogador && matriz[2][1] == jogador)
-        return identificador;
-    else if(matriz[0][2] == jogador && matriz[1][2] == jogador && matriz[2][2] == jogador)
-        return identificador;
-    else if(matriz[0][0] == jogador && matriz[0][1] == jogador && matriz[0][2] == jogador)
-        return identificador;
-    else if(matriz[1][0] == jogador && matriz[1][1] == jogador && matriz[1][2] == jogador)
-        return identificador;
-    else if(matriz[2][0] == jogador && matriz[2][1] == jogador && matriz[2][2] == jogador)
-        return identificador;
-    else if(matriz[0][0] == jogador && matriz[1][1] == jogador && matriz[2][2] == jogador)
-        return identificador;
-    else if(matriz[0][2] == jogador && matriz[1][1] == jogador && matriz[2][0] == jogador)
-        return identificador;
-    else
-        return 0;
-    
+    int line = 0;
+    int column = 0; 
+    for (int i =0; i <3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (board[i][j] == player) line++;
+            if (board[j][i] == player) column++;
+        }
+        if (line == 3 || column == 3) break;
+        else {line = 0; column = 0;}
+    }
+
+    if ((line == 3) || (column == 3)) return identifier;
+    else if(board[0][0] == player && board[1][1] == player && board[2][2] == player) //main diagonal
+        return identifier;
+    else if(board[0][2] == player && board[1][1] == player && board[2][0] == player) //secundary diagonal
+        return identifier;
+    else return 0; 
 }
 
 int main()
@@ -217,11 +217,11 @@ int main()
                 int par = PlayCount % 2 == 0;
                 if (par){
                     play(board, 'O', storeBoardConfig);
-                    WinState = verifica(board, 'O', 2);
+                    WinState = check(board, 'O', 2);
                 }
                 else{
                     play(board, 'X', storeBoardConfig);
-                    WinState = verifica(board, 'X', 1);
+                    WinState = check(board, 'X', 1);
                 }
                 PlayCount++;
 

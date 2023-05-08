@@ -3,15 +3,21 @@
 TODAS as modificações notaveis deste projeto serão incluídas nesse documento.
 Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [NÃO PUBLICADO] - XXXX-XX-XX
+
+### Modificado
+ - Função verifica traduzida completamente e renomeada para "check"
+ - Função check refurmulada para reduzir o código, facilitar implementações futuras e reduzir a quantidade de IFs.
+
 ## [v0.4.0] - 2023-05-08
 
 ### Adicionado
  - Função dedicada para mostrar o modelo de campos <printBoardSet>.
 
-### Alterado
+### Modificado
  - Função printBoardSet aplicada onde possível.
- - Função Joga completamente reformulada para ter menos ifs e ser mais facilmente alterada.
- - Função Joga traduzida completamente e renomeada para "Play".
+ - Função Joga completamente reformulada para ter menos IFs e ser mais facilmente alterada.
+ - Função Joga traduzida completamente e renomeada para "play".
 
 ## [v0.3.1] - 2023-05-07
 
