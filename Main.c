@@ -5,6 +5,112 @@ Tic Tac Toe
 #include <stdio.h>
 #include <stdlib.h>
 
+void printboard(char board[3][3])
+{
+    printf("   %c|%c|%c\n",board[0][0],board[1][0],board[2][0]);
+    printf("   %c|%c|%c\n",board[0][1],board[1][1],board[2][1]);
+    printf("   %c|%c|%c\n\n",board[0][2],board[1][2],board[2][2]);
+}
+
+void ChangeBoardSet(char board[3][3], int mode)
+{
+    if (mode == 0) //clean board
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                board[j][i] = '_';
+            }
+            
+        }
+        
+    }
+
+    if (mode == 1) // rising board mode
+    {
+        int count = 48; // working with string numbers in ascii
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                count++;
+                board[j][i] = count;
+            }
+            
+        }
+        
+    }
+
+    if (mode == 2) // numpad board mode
+     {
+        int count = 54; // working with string numbers in ascii
+        for (int i = 0; i < 3; i++)
+        {
+            
+            for (int j = 0; j < 3; j++)
+            {
+                count++;
+                board[j][i] = count;
+            }
+        count -= 6;
+        }
+        
+    }
+}   
+
+int mainmenu()
+{
+    int option;
+    system("clear||cls");
+    printf("=================================\n");
+    printf("           Tic Tac Toe           \n");
+    printf("=================================\n");
+    printf("\n");
+    printf("[1] Iniciar jogo!\n");
+    printf("[2] Escolher modo de jogo\n");
+    printf("[3] Configuracao do tabuleiro\n");
+    printf("[4] Alterar nome dos jogadores\n");
+    printf("[5] Sair do jogo\n");
+
+    scanf("%d", &option);
+    return option;
+}
+
+void gamemode()
+{
+    //code
+}
+
+int boardConfig(int oldconfig)
+{   
+    int option = 0;
+
+    while (option != 1 && option != 2 && option != 3)
+    {
+        system("clear||cls");
+        printf("=================================\n");
+        printf("    Configuracao do tabuleiro    \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Tabuleiro Padrao\n");
+        printf("[2] Tabuleiro Numpad\n");
+        printf("[3] Voltar ao menu\n");
+
+        scanf("%d", &option);
+    }
+    
+    if (option != 3) return option;
+    else return oldconfig;
+    
+    mainmenu();
+}
+
+void playersName()
+{
+    //code
+}
+
 void joga(char matriz[3][3], char jogador, int config)
 {
     char auxiliar_board[3][3];
@@ -254,112 +360,6 @@ int verifica(char matriz[3][3], char jogador, int identificador)
     else
         return 0;
     
-}
-
-void printboard(char board[3][3])
-{
-    printf("   %c|%c|%c\n",board[0][0],board[1][0],board[2][0]);
-    printf("   %c|%c|%c\n",board[0][1],board[1][1],board[2][1]);
-    printf("   %c|%c|%c\n\n",board[0][2],board[1][2],board[2][2]);
-}
-
-void ChangeBoardSet(char board[3][3], int mode)
-{
-    if (mode == 0) //clean board
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                board[j][i] = '_';
-            }
-            
-        }
-        
-    }
-
-    if (mode == 1) // rising board mode
-    {
-        int count = 48; // working with string numbers in ascii
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                count++;
-                board[j][i] = count;
-            }
-            
-        }
-        
-    }
-
-    if (mode == 2) // numpad board mode
-     {
-        int count = 54; // working with string numbers in ascii
-        for (int i = 0; i < 3; i++)
-        {
-            
-            for (int j = 0; j < 3; j++)
-            {
-                count++;
-                board[j][i] = count;
-            }
-        count -= 6;
-        }
-        
-    }
-}   
-
-int mainmenu()
-{
-    int option;
-    system("clear||cls");
-    printf("=================================\n");
-    printf("           Tic Tac Toe           \n");
-    printf("=================================\n");
-    printf("\n");
-    printf("[1] Iniciar jogo!\n");
-    printf("[2] Escolher modo de jogo\n");
-    printf("[3] Configuracao do tabuleiro\n");
-    printf("[4] Alterar nome dos jogadores\n");
-    printf("[5] Sair do jogo\n");
-
-    scanf("%d", &option);
-    return option;
-}
-
-void gamemode()
-{
-    //code
-}
-
-int boardConfig(int oldconfig)
-{   
-    int option = 0;
-
-    while (option != 1 && option != 2 && option != 3)
-    {
-        system("clear||cls");
-        printf("=================================\n");
-        printf("    Configuracao do tabuleiro    \n");
-        printf("=================================\n");
-        printf("\n");
-        printf("[1] Tabuleiro Padrao\n");
-        printf("[2] Tabuleiro Numpad\n");
-        printf("[3] Voltar ao menu\n");
-
-        scanf("%d", &option);
-    }
-    
-    if (option != 3) return option;
-    else return oldconfig;
-    
-    mainmenu();
-}
-
-void playersName()
-{
-    //code
 }
 
 int main()

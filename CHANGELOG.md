@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.3.1] - 2023-05-07
+
+### Corrigido
+ - Funções "joga" e "verifica" movidas para baixo no código para evitar erro de variavel implícita.
+
 ## [0.3] - 2023-05-07
 
 ### Adicionado
