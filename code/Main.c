@@ -133,14 +133,15 @@ void playersName()
 
         scanf("%d", &option);
     }
-    if (option == 1)
+    if (option == 1 || option == 2)
     {
-        
+        changename(option);
     }
-    else if (option == 2)
-    {
 
-    }
+}
+
+void changename(int player)
+{
 
 }
 

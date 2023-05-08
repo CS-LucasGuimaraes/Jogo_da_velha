@@ -7,6 +7,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 
 ### Adicionado
  - Pasta de testes com testes de novas funções antes de implementa-las no código oficial.
+ - Função playersName implementada.
 
 ### Modificado
  - Códigos movidos para a pasta <code>.
