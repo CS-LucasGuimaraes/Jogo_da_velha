@@ -10,7 +10,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
  - Função playersName implementada.
 
 ### Modificado
- - Códigos movidos para a pasta <code>.
+ - Códigos movidos para a pasta code.
  - Pastas de output com .exe dos arquivos não será mais enviada para o repositório. 
 
 ## [v0.5.0] - 2023-05-08
@@ -26,7 +26,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 ## [v0.4.0] - 2023-05-08
 
 ### Adicionado
- - Função dedicada para mostrar o modelo de campos <printBoardSet>.
+ - Função dedicada para mostrar o modelo de campos printBoardSet.
 
 ### Modificado
  - Função printBoardSet aplicada onde possível.
@@ -45,7 +45,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
  - Sempre que o jogador digitar 0, o modelo de campos será mostrado novamente.
 
 ### Modificado
- - Lista de afazeres passou a ser um arquivo dedicado <TODO.md>
+ - Lista de afazeres passou a ser um arquivo dedicado TODO.md
 
 ## [v0.2.0] - 2023-04-25  
  
