@@ -1,5 +1,10 @@
 # Change Log
 
+
+TODAS as modificações notaveis deste projeto serão incluídas nesse documento.
+
+Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
+
 ## [0.3.1] - 2023-05-07
 
 ### Corrigido
