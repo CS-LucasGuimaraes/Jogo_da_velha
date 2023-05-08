@@ -5,6 +5,16 @@ Tic Tac Toe
 #include <stdio.h>
 #include <stdlib.h>
 
+void prints(char string[])
+{
+    int c = 0;
+    while (string[c] != '\0')
+    {
+        printf("%c", string[c]);
+        c++;
+    }
+}
+
 void printboard(char board[3][3])
 {
     printf("   %c|%c|%c\n",board[0][0],board[1][0],board[2][0]);
@@ -108,7 +118,30 @@ int boardConfig(int oldconfig)
 
 void playersName()
 {
-    //code
+    int option = 0;
+
+    while (option != 1 && option != 2 && option != 3)
+    {
+        system("clear||cls");
+        printf("=================================\n");
+        printf("        Nome dos Jogadores       \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Alterar nome do jogador X\n");
+        printf("[2] Alterar nome do jogador O\n");
+        printf("[3] Voltar ao menu\n");
+
+        scanf("%d", &option);
+    }
+    if (option == 1)
+    {
+        
+    }
+    else if (option == 2)
+    {
+
+    }
+
 }
 
 void printBoardSet(int config)
@@ -164,10 +197,7 @@ void play(char board[3][3], char player, int config)
 
 int check(char board[3][3], char player, int identifier)
 {
-    int line = 0;
-    int column = 0; 
-    int main_diagonal = 0;
-    int sec_diagonal = 0;
+    int line = 0, column = 0, main_diagonal = 0, sec_diagonal = 0;
     for (int i =0; i <3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -198,6 +228,8 @@ int main()
     char PlayAgain;
     int menu;
     int storeBoardConfig = 1;
+    char PlayerX = 'X';
+    char PlayerO = 'O';
     while (1)
     {
         menu = 0;

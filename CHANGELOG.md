@@ -3,6 +3,15 @@
 TODAS as modificações notaveis deste projeto serão incluídas nesse documento.
 Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [NÃO PUBLICADO] - XXXX-XX-XX
+
+### Adicionado
+ - Pasta de testes com testes de novas funções antes de implementa-las no código oficial.
+
+### Modificado
+ - Códigos movidos para a pasta <code>.
+ - Pastas de output com .exe dos arquivos não será mais enviada para o repositório. 
+
 ## [v0.5.0] - 2023-05-08
 
 ### Modificado
