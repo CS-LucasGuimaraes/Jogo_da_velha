@@ -5,16 +5,6 @@ Tic Tac Toe
 #include <stdio.h>
 #include <stdlib.h>
 
-void prints(char string[])
-{
-    int c = 0;
-    while (string[c] != '\0')
-    {
-        printf("%c", string[c]);
-        c++;
-    }
-}
-
 void printboard(char board[3][3])
 {
     printf("   %c|%c|%c\n",board[0][0],board[1][0],board[2][0]);
@@ -113,36 +103,37 @@ int boardConfig(int oldconfig)
     if (option != 3) return option;
     else return oldconfig;
     
-    mainmenu();
+    
 }
 
-void playersName()
+void changename(char Player[])
+{
+    system("clear||cls");
+
+    printf("Altere o nome do jogador %s: ", Player);
+    scanf(" %[^\n]s", Player);
+}
+
+void playersName(char PlayerX[], char PlayerO[])
 {
     int option = 0;
 
-    while (option != 1 && option != 2 && option != 3)
+    while (option != 3)
     {
         system("clear||cls");
         printf("=================================\n");
         printf("        Nome dos Jogadores       \n");
         printf("=================================\n");
         printf("\n");
-        printf("[1] Alterar nome do jogador X\n");
-        printf("[2] Alterar nome do jogador O\n");
+        printf("[1] Alterar nome do jogador %s\n", PlayerX);
+        printf("[2] Alterar nome do jogador %s\n", PlayerO);
         printf("[3] Voltar ao menu\n");
 
         scanf("%d", &option);
+
+        if (option == 1) changename(PlayerX);
+        else if (option == 2) changename(PlayerO);
     }
-    if (option == 1 || option == 2)
-    {
-        changename(option);
-    }
-
-}
-
-void changename(int player)
-{
-
 }
 
 void printBoardSet(int config)
@@ -154,17 +145,17 @@ void printBoardSet(int config)
     printf("\n");
 }
 
-void play(char board[3][3], char player, int config)
+void play(char board[3][3], char player_symbol, int config, char Player_name[])
 {
     int pos;
     int count;
     int move_completed = 0;
-    printf("Jogador %c, escolha sua jogada: ", player);
+    printf("Jogador %s, escolha sua jogada: ", Player_name);
 
     while(1)
     {
         scanf("%d", &pos);
-        if ((0 <= pos) & (pos <= 9))
+        if ((1 <= pos) & (pos <= 9))
         {
             if (config == 1) count = 0;
             else if (config == 2) count = 6;
@@ -175,7 +166,7 @@ void play(char board[3][3], char player, int config)
                     count++;
                     if (pos == count) if (board[j][i] == '_')
                     {
-                    board[j][i] = player;
+                    board[j][i] = player_symbol;
                         move_completed = 1;
                     }
                     if (move_completed == 1) break;
@@ -184,16 +175,9 @@ void play(char board[3][3], char player, int config)
                 if (move_completed == 1) break;
             }
             if (move_completed == 1) break;
-            else if (pos == 0)
-            {
-                system("clear||cls");
-                printBoardSet(config);
-                printboard(board);
-                printf("Jogador %c, escolha sua jogada: ", player);
-            }
         }
-        if (pos != 0) printf("Jogada invalida!! Escolha outra jogada: ");
-    }    
+        if (move_completed != 1) printf("Jogada invalida!! Escolha outra jogada: ");
+    }
 }
 
 int check(char board[3][3], char player, int identifier)
@@ -229,8 +213,8 @@ int main()
     char PlayAgain;
     int menu;
     int storeBoardConfig = 1;
-    char PlayerX = 'X';
-    char PlayerO = 'O';
+    char PlayerX[32] = "X";
+    char PlayerO[32] = "O";
     while (1)
     {
         menu = 0;
@@ -240,7 +224,7 @@ int main()
 
             if (menu == 2) gamemode();
             else if (menu == 3) storeBoardConfig = boardConfig(storeBoardConfig);
-            else if (menu == 4) playersName();
+            else if (menu == 4) playersName(PlayerX, PlayerO);
         }
         if (menu == 5) break;
         
@@ -257,11 +241,11 @@ int main()
                 printboard(board);
                 int par = PlayCount % 2 == 0;
                 if (par){
-                    play(board, 'O', storeBoardConfig);
+                    play(board, 'O', storeBoardConfig, PlayerO);
                     WinState = check(board, 'O', 2);
                 }
                 else{
-                    play(board, 'X', storeBoardConfig);
+                    play(board, 'X', storeBoardConfig, PlayerX);
                     WinState = check(board, 'X', 1);
                 }
                 PlayCount++;

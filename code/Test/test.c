@@ -18,23 +18,21 @@ int lenS(char string[])
     return c;
 }
 
-char changename()
+void changename(char Player[])
 {
-    char PlayerX[16] = "NOME DO JOGADOR X";
-    int len = lenS(PlayerX);
     printf("Digite o novo nome: ");
-    char name[16];
-    scanf("%s", name);
-    for (int i = 0; i < len; i++)
-    {
-        *(PlayerX+i) = name[i];
-    }
-    //printf("%s\n", PlayerX);
-    return PlayerX;
+    scanf(" %[^\n]s", Player);
 }
+
 int main()
 {
-    char nome[16];
-    *nome = changename();
-    printS(nome);
+    char PlayerX[20] = "X";
+    char PlayerO[20] = "O";
+
+    changename(PlayerX);
+    changename(PlayerO);
+    printS(PlayerX);
+    printS(PlayerO);
+
+    return 0;
 }
