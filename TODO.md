@@ -1,8 +1,8 @@
 # To-do
 
 ## Limpeza
- - Limpar e traduzir função joga.
  - Limpar e traduzir função verifica.
+ - Limpar textos printados na tela.
 
 ## Funções
  - IA e menu "Game Mode" para seleção de jogo PvP ou PvM

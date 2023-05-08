@@ -27,7 +27,7 @@ void ChangeBoardSet(char board[3][3], int mode)
         
     }
 
-    if (mode == 1) // rising board mode
+    else if (mode == 1) // rising board mode
     {
         int count = 48; // working with string numbers in ascii
         for (int i = 0; i < 3; i++)
@@ -42,7 +42,7 @@ void ChangeBoardSet(char board[3][3], int mode)
         
     }
 
-    if (mode == 2) // numpad board mode
+    else if (mode == 2) // numpad board mode
      {
         int count = 54; // working with string numbers in ascii
         for (int i = 0; i < 3; i++)
@@ -120,225 +120,45 @@ void printBoardSet(int config)
     printf("\n");
 }
 
-void joga(char matriz[3][3], char jogador, int config)
+void play(char board[3][3], char player, int config)
 {
-    int posicao;
-    printf("Jogador %c, escolha sua jogada: ", jogador);
-    
-    if (config == 1)
+    int pos;
+    int count;
+    int move_completed = 0;
+    printf("Jogador %c, escolha sua jogada: ", player);
+
+    while(1)
     {
-        while(1)
+        scanf("%d", &pos);
+        if ((0 <= pos) & (pos <= 9))
         {
-            scanf("%d", &posicao);
-
-            if (posicao == 1)
+            if (config == 1) count = 0;
+            else if (config == 2) count = 6;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
                 {
-                if(matriz[0][0] == '_')
-                    {matriz[0][0] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
+                    count++;
+                    if (pos == count) if (board[j][i] == '_')
+                    {
+                    board[j][i] = player;
+                        move_completed = 1;
                     }
-
-            else if (posicao == 2)
-                {
-                if(matriz[1][0] == '_')
-                    {matriz[1][0] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 3)
-                {
-                if(matriz[2][0] == '_')
-                    {matriz[2][0] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 4)
-                {
-                if(matriz[0][1] == '_')
-                    {matriz[0][1] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 5)
-                {
-                if(matriz[1][1] == '_')
-                    {matriz[1][1] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 6)
-                {
-                if(matriz[2][1] == '_')
-                    {matriz[2][1] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 7)
-                {
-                if(matriz[0][2] == '_')
-                    {matriz[0][2] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 8)
-                {
-                if(matriz[1][2] == '_')
-                    {matriz[1][2] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 9)
-                {
-                if(matriz[2][2] == '_')
-                    {matriz[2][2] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-            else if (posicao == 0)
-                {
+                    if (move_completed == 1) break;
+                }
+                if (config == 2) count -= 6;
+                if (move_completed == 1) break;
+            }
+            if (move_completed == 1) break;
+            else if (pos == 0)
+            {
                 printBoardSet(config);
-                printboard(matriz);
-                printf("Jogador %c, escolha sua jogada: ", jogador);
-                continue;}            
-            else{
-                printf("Jogada invalida!! Escolha outra jogada: ");
-                continue;}
+                printboard(board);
+                printf("Jogador %c, escolha sua jogada: ", player);
+            }
         }
-    }
-    
-    else if (config == 2)
-    {
-        while(1)
-        {
-            scanf("%d", &posicao);
-
-            if (posicao == 7)
-                {
-                if(matriz[0][0] == '_')
-                    {matriz[0][0] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 8)
-                {
-                if(matriz[1][0] == '_')
-                    {matriz[1][0] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 9)
-                {
-                if(matriz[2][0] == '_')
-                    {matriz[2][0] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 4)
-                {
-                if(matriz[0][1] == '_')
-                    {matriz[0][1] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 5)
-                {
-                if(matriz[1][1] == '_')
-                    {matriz[1][1] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 6)
-                {
-                if(matriz[2][1] == '_')
-                    {matriz[2][1] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 1)
-                {
-                if(matriz[0][2] == '_')
-                    {matriz[0][2] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 2)
-                {
-                if(matriz[1][2] == '_')
-                    {matriz[1][2] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-
-            else if (posicao == 3)
-                {
-                if(matriz[2][2] == '_')
-                    {matriz[2][2] = jogador;
-                    break;}
-                else{
-                    printf("Jogada invalida!! Escolha outra jogada: ");
-                    continue;}
-                    }
-            else if (posicao == 0)
-                {
-                printBoardSet(config);
-                printboard(matriz);
-                printf("Jogador %c, escolha sua jogada: ", jogador);
-                continue;}
-            else{
-                printf("Jogada invalida!! Escolha outra jogada: ");
-                continue;}
-        }
-    }
-    
+        if (pos != 0) printf("Jogada invalida!! Escolha outra jogada: ");
+    }    
 }
 
 int verifica(char matriz[3][3], char jogador, int identificador)
@@ -396,11 +216,11 @@ int main()
                 printboard(board);
                 int par = PlayCount % 2 == 0;
                 if (par){
-                    joga(board, 'O', storeBoardConfig);
+                    play(board, 'O', storeBoardConfig);
                     WinState = verifica(board, 'O', 2);
                 }
                 else{
-                    joga(board, 'X', storeBoardConfig);
+                    play(board, 'X', storeBoardConfig);
                     WinState = verifica(board, 'X', 1);
                 }
                 PlayCount++;
