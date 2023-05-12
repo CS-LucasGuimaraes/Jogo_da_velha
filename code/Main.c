@@ -4,6 +4,13 @@ Tic Tac Toe
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+void clear()
+{
+    // printf("\e[2J"); //clear mode 2   
+    system("clear||cls"); // clear mode 1
+}
 
 void printboard(char board[3][3])
 {
@@ -57,12 +64,12 @@ void ChangeBoardSet(char board[3][3], int mode)
         }
         
     }
-}   
+}
 
 int mainmenu()
 {
     int option;
-    system("clear||cls");
+    clear();
     printf("=================================\n");
     printf("           Tic Tac Toe           \n");
     printf("=================================\n");
@@ -77,9 +84,27 @@ int mainmenu()
     return option;
 }
 
-void gamemode()
+int gamemode(int oldconfig)
 {
-    //code
+    int option = 0;
+
+    while (option != 1 && option != 2 && option != 3 && option != 4)
+    {
+        clear();
+        printf("=================================\n");
+        printf("           Modo de Jogo          \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Player Vs Player\n");
+        printf("[2] Computador joga como primeiro\n");
+        printf("[3] Computador joga como segundo\n");
+        printf("[4] Voltar ao menu\n");
+
+        scanf("%d", &option);
+    }
+
+    if (option != 4) return option;
+    else return oldconfig;
 }
 
 int boardConfig(int oldconfig)
@@ -88,7 +113,7 @@ int boardConfig(int oldconfig)
 
     while (option != 1 && option != 2 && option != 3)
     {
-        system("clear||cls");
+        clear();
         printf("=================================\n");
         printf("    Configuracao do tabuleiro    \n");
         printf("=================================\n");
@@ -108,8 +133,7 @@ int boardConfig(int oldconfig)
 
 void changename(char Player[])
 {
-    system("clear||cls");
-
+    clear();
     printf("Altere o nome do jogador %s: ", Player);
     scanf(" %[^\n]s", Player);
 }
@@ -120,7 +144,7 @@ void playersName(char PlayerX[], char PlayerO[])
 
     while (option != 3)
     {
-        system("clear||cls");
+        clear();
         printf("=================================\n");
         printf("        Nome dos Jogadores       \n");
         printf("=================================\n");
@@ -180,6 +204,83 @@ void play(char board[3][3], char player_symbol, int config, char Player_name[])
     }
 }
 
+void BotRandomMove(char board[3][3], char bot_symbol)
+{
+    int pos, count;
+    int move_completed = 0;
+
+    while(1)
+    {
+        pos = rand() % 9 + 1;
+        count = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                count++;
+                if (pos == count) if (board[j][i] == '_')
+                {
+                board[j][i] = bot_symbol;
+                move_completed = 1;
+                }
+                    if (move_completed == 1) break;
+            }
+            if (move_completed == 1) break;
+        }
+        if (move_completed == 1) break;    
+    }
+}
+
+int BotMove(char board[3][3], int move_number, char bot_symbol, int path)
+{
+    int count, pos;
+
+    if (move_number == 1) BotRandomMove(board, bot_symbol); // não implementado
+    else if (move_number == 2)
+    {
+        if (board[1][1] == 'X')
+        {
+            while(1)
+            {
+                pos = rand() % 4 + 1;
+                count = 0;
+                for (int i = 0; i < 3; i += 2)
+                {
+                    for (int j = 0; j < 3; j += 2)
+                    {
+                        count++;
+                        if (pos == count)
+                        {
+                            board[i][j] = bot_symbol;
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+        else
+            {
+            if (board[0][0] == 'X' || board[0][2] == 'X' || board[2][0] == 'X' || board[2][0] == 'X')
+                return 2;
+            else return 3;
+            board[1][1] = 'O';
+            }
+    }
+    else if (move_number %2 == 1) BotRandomMove(board, bot_symbol); // não implementado
+    else if (move_number %2 == 0) 
+    {
+        BotRandomMove(board, bot_symbol); // não implementado
+    }
+
+
+
+
+
+    if (path == 0)printf(" ");    
+    
+return 0;
+}
+
 int check(char board[3][3], char player, int identifier)
 {
     int line = 0, column = 0, main_diagonal = 0, sec_diagonal = 0;
@@ -212,9 +313,11 @@ int main()
 {
     char PlayAgain;
     int menu;
-    int storeBoardConfig = 1;
+    int storeBoardConfig = 1, storeGameMode = 1;
     char PlayerX[32] = "X";
     char PlayerO[32] = "O";
+    srand(time(NULL));
+    int path = 0;
     while (1)
     {
         menu = 0;
@@ -222,7 +325,7 @@ int main()
         {
             menu = mainmenu();
 
-            if (menu == 2) gamemode();
+            if (menu == 2) storeGameMode = gamemode(storeGameMode);
             else if (menu == 3) storeBoardConfig = boardConfig(storeBoardConfig);
             else if (menu == 4) playersName(PlayerX, PlayerO);
         }
@@ -236,16 +339,18 @@ int main()
             ChangeBoardSet(board, 0);
             do
             {
-                system("clear||cls");
+                clear();
                 printBoardSet(storeBoardConfig);
                 printboard(board);
-                int par = PlayCount % 2 == 0;
-                if (par){
-                    play(board, 'O', storeBoardConfig, PlayerO);
+                int even = PlayCount % 2 == 0;
+                if (even){
+                    if (storeGameMode == 1 || storeGameMode == 2) play(board, 'O', storeBoardConfig, PlayerO);
+                    else if (storeGameMode == 3) path = BotMove(board, PlayCount, 'O', path);
                     WinState = check(board, 'O', 2);
                 }
                 else{
-                    play(board, 'X', storeBoardConfig, PlayerX);
+                    if (storeGameMode == 1 || storeGameMode == 3) play(board, 'X', storeBoardConfig, PlayerX);
+                    else if (storeGameMode == 2) path = BotMove(board, PlayCount, 'X', path);
                     WinState = check(board, 'X', 1);
                 }
                 PlayCount++;

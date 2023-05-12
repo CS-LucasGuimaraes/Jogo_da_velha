@@ -3,6 +3,16 @@
 TODAS as modificações notaveis deste projeto serão incluídas nesse documento.
 Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
 
+*CORRIGIDA CHANGELOG DA VERSÃO v0.6.0 
+
+## [Não publicado] - XXXX-XX-XX
+
+### Adicionado
+ - Início do bot (trabalhando com bot jogando como O).
+
+### Modificado
+ - Função dedicada para limpar o terminal para facilitar sua alteração no futuro.
+
 ## [v0.6.0] - 2023-05-08
 
 ### Adicionado
@@ -11,7 +21,10 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 
 ### Modificado
  - Códigos movidos para a pasta code.
- - Pastas de output com .exe dos arquivos não será mais enviada para o repositório. 
+ - Pastas de output com .exe dos arquivos não será mais enviada para o repositório.
+
+### Removido
+ - Função que mostra novamente o modelo de campos ao digitar 0.
 
 ## [v0.5.0] - 2023-05-08
 
