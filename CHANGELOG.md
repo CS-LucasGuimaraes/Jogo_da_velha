@@ -9,6 +9,7 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 
 ### Adicionado
  - Início do bot (trabalhando com bot jogando como O).
+ - Adicionado .gitignore.
 
 ### Modificado
  - Função dedicada para limpar o terminal para facilitar sua alteração no futuro.
