@@ -5,11 +5,139 @@ Tic Tac Toe
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 void clear()
 {
-    printf("\e[2J"); //clear mode 2   
-    // system("clear||cls"); // clear mode 1
+    char clearmode[] = "std"; // accepted modes: <std // debug>
+    if (strcmp(clearmode, "std") == 0) system("clear||cls");
+    else if (strcmp(clearmode, "debug") == 0) printf("\e[2J");   
+}
+
+void text_en(char text_identifier[], char PlayerX[], char PlayerO[], char Player[])
+{
+    if (strcmp(text_identifier, "Menu") == 0)
+    {
+        printf("=================================\n");
+        printf("           Tic Tac Toe           \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Start Game!\n");
+        printf("[2] Choose game mode\n");
+        printf("[3] Board Configuration\n");
+        printf("[4] Change player's name\n");
+        printf("[5] Change language\n");
+        printf("[6] Exit game\n");
+    }
+    else if (strcmp(text_identifier, "Game Mode") == 0)
+    {
+        printf("=================================\n");
+        printf("             Game Mode           \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Player Vs Player\n");
+        printf("[2] Computer plays as X\n");
+        printf("[3] Computer plays as O\n");
+        printf("[4] Back to Main Menu\n");
+
+    }
+    else if (strcmp(text_identifier, "Board Config") == 0)
+    {
+        printf("=================================\n");
+        printf("       Board Configuration       \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Standard Board\n");
+        printf("[2] Tumpad Board\n");
+        printf("[3] Back to Main Menu\n");
+    }
+    else if (strcmp(text_identifier, "Player Name") == 0)
+    {
+        printf("=================================\n");
+        printf("          Player's Names         \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Change player %s name\n", PlayerX);
+        printf("[2] Change player %s name\n", PlayerO);
+        printf("[3] Back to Main Menu\n");
+    }
+    else if (strcmp(text_identifier, "Change Name") == 0)
+    {
+        printf("Change name of player %s: ", Player);
+    }
+    else if (strcmp(text_identifier, "ChangeLang") == 0)
+    {
+        printf("=================================\n");
+        printf("         Change Language         \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] American english (EN-US)\n");
+        printf("[2] Brazilian portuguese (PT-BR) \n");
+        printf("[3] Back to Main Menu\n");
+    }
+}
+
+void text_pt(char text_identifier[], char PlayerX[], char PlayerO[], char Player[])
+{
+    if (strcmp(text_identifier, "Menu") == 0)
+    {
+        printf("=================================\n");
+        printf("          Jogo da Velha          \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Iniciar jogo!\n");
+        printf("[2] Escolher modo de jogo\n");
+        printf("[3] Configuracao do tabuleiro\n");
+        printf("[4] Alterar nome dos jogadores\n");
+        printf("[5] Alterar idioma\n");
+        printf("[6] Sair do jogo\n");
+    }
+    else if (strcmp(text_identifier, "Modo de Jogo") == 0)
+    {
+        printf("=================================\n");
+        printf("           Modo de Jogo          \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Player Vs Player\n");
+        printf("[2] Computador joga como X\n");
+        printf("[3] Computador joga como O\n");
+        printf("[4] Voltar ao menu\n");
+
+    }
+    else if (strcmp(text_identifier, "Configuracao do Tabuleiro") == 0)
+    {
+        printf("=================================\n");
+        printf("    Configuracao do tabuleiro    \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Tabuleiro Padrao\n");
+        printf("[2] Tabuleiro Numpad\n");
+        printf("[3] Voltar ao menu\n");
+    }
+    else if (strcmp(text_identifier, "Nome dos Jogadores") == 0)
+    {
+        printf("=================================\n");
+        printf("        Nome dos Jogadores       \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Alterar nome do jogador %s\n", PlayerX);
+        printf("[2] Alterar nome do jogador %s\n", PlayerO);
+        printf("[3] Voltar ao menu\n");
+    }
+    else if (strcmp(text_identifier, "Trocar Nome") == 0)
+    {
+        printf("Altere o nome do jogador %s: ", Player);
+    }
+    else if (strcmp(text_identifier, "Mudar Idioma") == 0)
+    {
+        printf("=================================\n");
+        printf("         Alterar Idioma          \n");
+        printf("=================================\n");
+        printf("\n");
+        printf("[1] Ingles americano (EN-US)\n");
+        printf("[2] Portugues brasileiro (PT-BR) \n");
+        printf("[3] Voltar ao menu\n");
+    }
 }
 
 void printboard(char board[3][3])
@@ -66,39 +194,26 @@ void ChangeBoardSet(char board[3][3], int mode)
     }
 }
 
-int mainmenu()
+int mainmenu(char lang[])
 {
     int option;
     clear();
-    printf("=================================\n");
-    printf("           Tic Tac Toe           \n");
-    printf("=================================\n");
-    printf("\n");
-    printf("[1] Iniciar jogo!\n");
-    printf("[2] Escolher modo de jogo\n");
-    printf("[3] Configuracao do tabuleiro\n");
-    printf("[4] Alterar nome dos jogadores\n");
-    printf("[5] Sair do jogo\n");
+    if (strcmp(lang, "en_us") == 0) text_en("Menu", "", "", "");
+    else if (strcmp(lang, "pt_br") == 0) text_pt("Menu", "", "", "");
 
     scanf("%d", &option);
     return option;
 }
 
-int gamemode(int oldconfig)
+int gamemode(int oldconfig, char lang[])
 {
     int option = 0;
 
     while (option != 1 && option != 2 && option != 3 && option != 4)
     {
         clear();
-        printf("=================================\n");
-        printf("           Modo de Jogo          \n");
-        printf("=================================\n");
-        printf("\n");
-        printf("[1] Player Vs Player\n");
-        printf("[2] Computador joga como primeiro\n");
-        printf("[3] Computador joga como segundo\n");
-        printf("[4] Voltar ao menu\n");
+        if (strcmp(lang, "en_us") == 0) text_en("Game Mode", "", "", "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Modo de Jogo", "", "", "");
 
         scanf("%d", &option);
     }
@@ -107,20 +222,15 @@ int gamemode(int oldconfig)
     else return oldconfig;
 }
 
-int boardConfig(int oldconfig)
+int boardConfig(int oldconfig, char lang[])
 {   
     int option = 0;
 
     while (option != 1 && option != 2 && option != 3)
     {
         clear();
-        printf("=================================\n");
-        printf("    Configuracao do tabuleiro    \n");
-        printf("=================================\n");
-        printf("\n");
-        printf("[1] Tabuleiro Padrao\n");
-        printf("[2] Tabuleiro Numpad\n");
-        printf("[3] Voltar ao menu\n");
+        if (strcmp(lang, "en_us") == 0) text_en("Board Config", "", "", "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Configuracao do Tabuleiro", "", "", "");
 
         scanf("%d", &option);
     }
@@ -131,33 +241,46 @@ int boardConfig(int oldconfig)
     
 }
 
-void changename(char Player[])
+void changename(char Player[], char lang[])
 {
     clear();
-    printf("Altere o nome do jogador %s: ", Player);
+    if (strcmp(lang, "en_us") == 0) text_en("Change Name", "", "", Player);
+    else if (strcmp(lang, "pt_br") == 0) text_pt("Trocar Nome", "", "", Player);
     scanf(" %[^\n]s", Player);
 }
 
-void playersName(char PlayerX[], char PlayerO[])
+void playersName(char PlayerX[], char PlayerO[], char lang[])
 {
     int option = 0;
 
     while (option != 3)
     {
         clear();
-        printf("=================================\n");
-        printf("        Nome dos Jogadores       \n");
-        printf("=================================\n");
-        printf("\n");
-        printf("[1] Alterar nome do jogador %s\n", PlayerX);
-        printf("[2] Alterar nome do jogador %s\n", PlayerO);
-        printf("[3] Voltar ao menu\n");
-
+        if (strcmp(lang, "en_us") == 0) text_en("Player Name", PlayerX, PlayerO, "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Nome dos Jogadores", PlayerX, PlayerO, "");
         scanf("%d", &option);
 
-        if (option == 1) changename(PlayerX);
-        else if (option == 2) changename(PlayerO);
+        if (option == 1) changename(PlayerX, lang);
+        else if (option == 2) changename(PlayerO, lang);
     }
+}
+
+char* changeLang(char lang[])
+{
+    int option = 0;
+
+    while (option != 1 && option != 2 && option != 3)
+    {
+        clear();
+        if (strcmp(lang, "en_us") == 0) text_en("ChangeLang", "", "", "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Mudar Idioma", "", "", "");
+
+        scanf("%d", &option);
+    }
+
+    if (option == 1) return "en_us";
+    else if (option == 2) return "pt_br";
+    else if (option == 3) return lang;    
 }
 
 void printBoardSet(int config)
@@ -367,6 +490,7 @@ int check(char board[3][3], char player, int identifier)
 
 int main()
 {
+    char lang[] = "en_us";
     char PlayAgain;
     int menu;
     int storeBoardConfig = 1, storeGameMode = 1;
@@ -376,15 +500,16 @@ int main()
     while (1)
     {
         menu = 0;
-        while (menu != 1 && menu != 5)
+        while (menu != 1 && menu != 6)
         {
-            menu = mainmenu();
+            menu = mainmenu(lang);
 
-            if (menu == 2) storeGameMode = gamemode(storeGameMode);
-            else if (menu == 3) storeBoardConfig = boardConfig(storeBoardConfig);
-            else if (menu == 4) playersName(PlayerX, PlayerO);
+            if (menu == 2) storeGameMode = gamemode(storeGameMode, lang);
+            else if (menu == 3) storeBoardConfig = boardConfig(storeBoardConfig, lang);
+            else if (menu == 4) playersName(PlayerX, PlayerO, lang);
+            else if (menu == 5) strcpy(lang, changeLang(lang));
         }
-        if (menu == 5) break;
+        if (menu == 6) break;
         
         do
         {
@@ -429,6 +554,6 @@ int main()
 
             printf("Deseja jogar novamente? [s/n]: ");
             scanf(" %c", &PlayAgain);
-        } while (PlayAgain == 's' || PlayAgain == 'S');
+        } while (PlayAgain == 's' || PlayAgain == 'S' || PlayAgain == 'y' || PlayAgain == 'Y');
     }
 }

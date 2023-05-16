@@ -3,7 +3,12 @@
 TODAS as modificações notaveis deste projeto serão incluídas nesse documento.
 Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2.0.0.html).
 
-*CORRIGIDA CHANGELOG DA VERSÃO v0.6.0 
+## [NÃO PUBLICADO] - XXXX-XX-XX
+
+## Adicionado
+ - Opção de alterar idioma do jogo entre português e inglês.
+ - Funções text_pt e text_en para realizar os prints do jogo por meio da definição da linguagem e de um identificador de cada texto.
+ - Parametro ClearMode na função clear que altera entre os modos std (standard) e debug.
 
 ## [v0.7.0] - 2023-05-16
 
