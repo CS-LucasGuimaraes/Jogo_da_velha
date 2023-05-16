@@ -231,11 +231,15 @@ void BotRandomMove(char board[3][3], char bot_symbol)
     }
 }
 
-int BotMove(char board[3][3], int move_number, char bot_symbol, int path)
+void BotMove(char board[3][3], int move_number, char bot_symbol)
 {
     int count, pos;
+    int move_completed = 0;
 
-    if (move_number == 1) BotRandomMove(board, bot_symbol); // não implementado
+    if (move_number == 1) 
+    {
+        BotRandomMove(board, bot_symbol); //não implementado
+    }
     else if (move_number == 2)
     {
         if (board[1][1] == 'X')
@@ -252,33 +256,81 @@ int BotMove(char board[3][3], int move_number, char bot_symbol, int path)
                         if (pos == count)
                         {
                             board[i][j] = bot_symbol;
-                            return 1;
+                            move_completed = 1;
                         }
+                        if (move_completed == 1) break;
                     }
+                    if (move_completed == 1) break;
                 }
+                if (move_completed == 1) break;
             }
         }
-        else
-            {
-            if (board[0][0] == 'X' || board[0][2] == 'X' || board[2][0] == 'X' || board[2][0] == 'X')
-                return 2;
-            else return 3;
-            board[1][1] = 'O';
-            }
+        else board[1][1] = 'O';
     }
-    else if (move_number %2 == 1) BotRandomMove(board, bot_symbol); // não implementado
-    else if (move_number %2 == 0) 
+    else
     {
-        BotRandomMove(board, bot_symbol); // não implementado
+        char player;
+        //if (move_number %2 == 1) player = 'O';
+        //else if (move_number %2 == 0) player = 'X';
+        player = 'X';
+
+        int line = 0, column = 0, main_diagonal = 0, sec_diagonal = 0;
+        for (int i =0; i <3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (board[i][j] == player) line++;
+                if (board[j][i] == player) column++;
+                if (board[j][j] == player) main_diagonal++;
+                if (i+j==2) if (board[i][j] == player) sec_diagonal++;
+            }
+            if (line == 2)
+            {
+                move_completed = 1;
+                if (board[i][0] == '_') board[i][0] = bot_symbol;
+                else if (board[i][1] == '_') board[i][1] = bot_symbol;
+                else if (board[i][2] == '_') board[i][2] = bot_symbol;
+                else move_completed = 0;
+            }
+            if (column == 2)
+            {
+                move_completed = 1;
+                if (board[0][i] == '_') board[0][i] = bot_symbol;
+                else if (board[1][i] == '_') board[1][i] = bot_symbol;
+                else if (board[2][i] == '_') board[2][i] = bot_symbol;
+                else move_completed = 0;
+            }
+            if (i == 1)
+            {
+                if (main_diagonal == 2)
+                {
+                    move_completed = 1;
+                    if (board[0][0] == '_') board[0][0] = bot_symbol;
+                    else if (board[1][1] == '_') board[1][1] = bot_symbol;
+                    else if (board[2][2] == '_') board[2][2] = bot_symbol;
+                    else move_completed = 0;
+                    
+                }
+                if (sec_diagonal == 2)
+                {
+                    move_completed = 1;
+                    if (board[0][2] == '_') board[0][2] = bot_symbol;
+                    else if (board[1][1] == '_') board[1][1] = bot_symbol;
+                    else if (board[2][0] == '_') board[2][0] = bot_symbol;
+                    else move_completed = 0;
+                }
+            }
+            else 
+            {
+                line = 0;
+                column = 0;
+                main_diagonal = 0;
+                sec_diagonal = 0;
+            }
+        if (move_completed == 1) break;
+        }
+        if (move_completed != 1) BotRandomMove(board, bot_symbol);
     }
-
-
-
-
-
-    if (path == 0)printf(" ");    
-    
-return 0;
 }
 
 int check(char board[3][3], char player, int identifier)
@@ -303,7 +355,6 @@ int check(char board[3][3], char player, int identifier)
             line = 0;
             column = 0;
             main_diagonal = 0;
-            sec_diagonal = 0; 
         }
     }
     return 0;
@@ -317,7 +368,6 @@ int main()
     char PlayerX[32] = "X";
     char PlayerO[32] = "O";
     srand(time(NULL));
-    int path = 0;
     while (1)
     {
         menu = 0;
@@ -345,12 +395,12 @@ int main()
                 int even = PlayCount % 2 == 0;
                 if (even){
                     if (storeGameMode == 1 || storeGameMode == 2) play(board, 'O', storeBoardConfig, PlayerO);
-                    else if (storeGameMode == 3) path = BotMove(board, PlayCount, 'O', path);
+                    else if (storeGameMode == 3) BotMove(board, PlayCount, 'O');
                     WinState = check(board, 'O', 2);
                 }
                 else{
                     if (storeGameMode == 1 || storeGameMode == 3) play(board, 'X', storeBoardConfig, PlayerX);
-                    else if (storeGameMode == 2) path = BotMove(board, PlayCount, 'X', path);
+                    else if (storeGameMode == 2) BotMove(board, PlayCount, 'X');
                     WinState = check(board, 'X', 1);
                 }
                 PlayCount++;
