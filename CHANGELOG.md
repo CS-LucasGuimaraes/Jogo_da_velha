@@ -5,14 +5,25 @@ Esse projeto adere a [Versionamento Semântico 2.0.0](https://semver.org/spec/v2
 
 *CORRIGIDA CHANGELOG DA VERSÃO v0.6.0 
 
-## [Não publicado] - XXXX-XX-XX
+## [v0.7.0] - 2023-05-16
 
 ### Adicionado
- - Início do bot (trabalhando com bot jogando como O).
+ - Funcionamento de uma inteligência artificial para jogar contra 1 jogador.
+        - Função BotRandomMove para fazer a I.A. fazer um movimento aleatório quando não ouver jogada eficiente;
+        - Função check_bot_movement para checar se a I.A. pode vencer naquela rodada e se ela precisa bloquear o jogador;
+        - Função BotMove que controla os movimentos da I.A;
  - Adicionado .gitignore.
 
 ### Modificado
  - Função dedicada para limpar o terminal para facilitar sua alteração no futuro.
+
+### Corrigido
+ - Erro no qual a diagonal secundária não era reconhecida pela função check devido a um erro de reestabalecemento da variável sec_diagonal.
+
+### Removido
+ - Pasta de testes.
+ - Pasta de Outputs.
+ - Quaisquer binários compilados com extensão .exe.
 
 ## [v0.6.0] - 2023-05-08
 
