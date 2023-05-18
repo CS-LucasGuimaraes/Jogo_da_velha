@@ -14,7 +14,7 @@ void clear()
     else if (strcmp(clearmode, "debug") == 0) printf("\e[2J");   
 }
 
-void text_en(char text_identifier[], char PlayerX[], char PlayerO[], char Player[])
+void text_en(char text_identifier[], char var1[], char var2[])
 {
     if (strcmp(text_identifier, "Menu") == 0)
     {
@@ -48,7 +48,7 @@ void text_en(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("=================================\n");
         printf("\n");
         printf("[1] Standard Board\n");
-        printf("[2] Tumpad Board\n");
+        printf("[2] Numpad Board\n");
         printf("[3] Back to Main Menu\n");
     }
     else if (strcmp(text_identifier, "Player Name") == 0)
@@ -57,13 +57,13 @@ void text_en(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("          Player's Names         \n");
         printf("=================================\n");
         printf("\n");
-        printf("[1] Change player %s name\n", PlayerX);
-        printf("[2] Change player %s name\n", PlayerO);
+        printf("[1] Change player %s name\n", var1);
+        printf("[2] Change player %s name\n", var2);
         printf("[3] Back to Main Menu\n");
     }
     else if (strcmp(text_identifier, "Change Name") == 0)
     {
-        printf("Change name of player %s: ", Player);
+        printf("Change name of player %s: ", var1);
     }
     else if (strcmp(text_identifier, "ChangeLang") == 0)
     {
@@ -75,9 +75,33 @@ void text_en(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("[2] Brazilian portuguese (PT-BR) \n");
         printf("[3] Back to Main Menu\n");
     }
+    else if (strcmp(text_identifier, "Play Guide") == 0)
+    {
+        printf("Play Guide: \n");
+    }
+    else if (strcmp(text_identifier, "Choose Play") == 0)
+    {
+        printf("Player %s, choose your play: ", var1);
+    }
+    else if (strcmp(text_identifier, "Invalid Play") == 0)
+    {
+        printf("Invalid play! Chose another moviment: ");
+    }
+    else if (strcmp(text_identifier, "Tie") == 0)
+    {
+        printf("It's a tie! ");
+    }
+    else if (strcmp(text_identifier, "Win") == 0)
+    {
+        printf("Player %s wins! ", var1);
+    }
+    else if (strcmp(text_identifier, "Play Again") == 0)
+    {
+        printf("Do you want to  play again? [y/n]: ");
+    }
 }
 
-void text_pt(char text_identifier[], char PlayerX[], char PlayerO[], char Player[])
+void text_pt(char text_identifier[], char var1[], char var2[])
 {
     if (strcmp(text_identifier, "Menu") == 0)
     {
@@ -92,7 +116,7 @@ void text_pt(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("[5] Alterar idioma\n");
         printf("[6] Sair do jogo\n");
     }
-    else if (strcmp(text_identifier, "Modo de Jogo") == 0)
+    else if (strcmp(text_identifier, "Game Mode") == 0)
     {
         printf("=================================\n");
         printf("           Modo de Jogo          \n");
@@ -104,7 +128,7 @@ void text_pt(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("[4] Voltar ao menu\n");
 
     }
-    else if (strcmp(text_identifier, "Configuracao do Tabuleiro") == 0)
+    else if (strcmp(text_identifier, "Board Config") == 0)
     {
         printf("=================================\n");
         printf("    Configuracao do tabuleiro    \n");
@@ -114,21 +138,21 @@ void text_pt(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("[2] Tabuleiro Numpad\n");
         printf("[3] Voltar ao menu\n");
     }
-    else if (strcmp(text_identifier, "Nome dos Jogadores") == 0)
+    else if (strcmp(text_identifier, "Player Name") == 0)
     {
         printf("=================================\n");
         printf("        Nome dos Jogadores       \n");
         printf("=================================\n");
         printf("\n");
-        printf("[1] Alterar nome do jogador %s\n", PlayerX);
-        printf("[2] Alterar nome do jogador %s\n", PlayerO);
+        printf("[1] Alterar nome do jogador %s\n", var1);
+        printf("[2] Alterar nome do jogador %s\n", var2);
         printf("[3] Voltar ao menu\n");
     }
-    else if (strcmp(text_identifier, "Trocar Nome") == 0)
+    else if (strcmp(text_identifier, "Change Name") == 0)
     {
-        printf("Altere o nome do jogador %s: ", Player);
+        printf("Altere o nome do jogador %s: ", var1);
     }
-    else if (strcmp(text_identifier, "Mudar Idioma") == 0)
+    else if (strcmp(text_identifier, "ChangeLang") == 0)
     {
         printf("=================================\n");
         printf("         Alterar Idioma          \n");
@@ -137,6 +161,30 @@ void text_pt(char text_identifier[], char PlayerX[], char PlayerO[], char Player
         printf("[1] Ingles americano (EN-US)\n");
         printf("[2] Portugues brasileiro (PT-BR) \n");
         printf("[3] Voltar ao menu\n");
+    }
+    else if (strcmp(text_identifier, "Play Guide") == 0)
+    {
+        printf("Guia de Jogadas: \n");
+    }
+    else if (strcmp(text_identifier, "Choose Play") == 0)
+    {
+        printf("Jogador %s, escolha sua jogada: ", var1);
+    }
+    else if (strcmp(text_identifier, "Invalid Play") == 0)
+    {
+        printf("Jogada invalida! Escolha outro movimento: ");
+    }
+    else if (strcmp(text_identifier, "Tie") == 0)
+    {
+        printf("Deu velha! ");
+    }
+    else if (strcmp(text_identifier, "Win") == 0)
+    {
+        printf("O jogador %s ganhou! ", var1);
+    }
+    else if (strcmp(text_identifier, "Play Again") == 0)
+    {
+        printf("Deseja jogar novamente? [s/n]: ");
     }
 }
 
@@ -198,8 +246,8 @@ int mainmenu(char lang[])
 {
     int option;
     clear();
-    if (strcmp(lang, "en_us") == 0) text_en("Menu", "", "", "");
-    else if (strcmp(lang, "pt_br") == 0) text_pt("Menu", "", "", "");
+    if (strcmp(lang, "en_us") == 0) text_en("Menu", "", "");
+    else if (strcmp(lang, "pt_br") == 0) text_pt("Menu", "", "");
 
     scanf("%d", &option);
     return option;
@@ -212,8 +260,8 @@ int gamemode(int oldconfig, char lang[])
     while (option != 1 && option != 2 && option != 3 && option != 4)
     {
         clear();
-        if (strcmp(lang, "en_us") == 0) text_en("Game Mode", "", "", "");
-        else if (strcmp(lang, "pt_br") == 0) text_pt("Modo de Jogo", "", "", "");
+        if (strcmp(lang, "en_us") == 0) text_en("Game Mode", "", "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Game Mode", "", "");
 
         scanf("%d", &option);
     }
@@ -229,8 +277,8 @@ int boardConfig(int oldconfig, char lang[])
     while (option != 1 && option != 2 && option != 3)
     {
         clear();
-        if (strcmp(lang, "en_us") == 0) text_en("Board Config", "", "", "");
-        else if (strcmp(lang, "pt_br") == 0) text_pt("Configuracao do Tabuleiro", "", "", "");
+        if (strcmp(lang, "en_us") == 0) text_en("Board Config", "", "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Board Config", "", "");
 
         scanf("%d", &option);
     }
@@ -244,8 +292,8 @@ int boardConfig(int oldconfig, char lang[])
 void changename(char Player[], char lang[])
 {
     clear();
-    if (strcmp(lang, "en_us") == 0) text_en("Change Name", "", "", Player);
-    else if (strcmp(lang, "pt_br") == 0) text_pt("Trocar Nome", "", "", Player);
+    if (strcmp(lang, "en_us") == 0) text_en("Change Name", Player, "");
+    else if (strcmp(lang, "pt_br") == 0) text_pt("Change Name", Player, "");
     scanf(" %[^\n]s", Player);
 }
 
@@ -256,8 +304,8 @@ void playersName(char PlayerX[], char PlayerO[], char lang[])
     while (option != 3)
     {
         clear();
-        if (strcmp(lang, "en_us") == 0) text_en("Player Name", PlayerX, PlayerO, "");
-        else if (strcmp(lang, "pt_br") == 0) text_pt("Nome dos Jogadores", PlayerX, PlayerO, "");
+        if (strcmp(lang, "en_us") == 0) text_en("Player Name", PlayerX, PlayerO);
+        else if (strcmp(lang, "pt_br") == 0) text_pt("Player Name", PlayerX, PlayerO);
         scanf("%d", &option);
 
         if (option == 1) changename(PlayerX, lang);
@@ -272,32 +320,35 @@ char* changeLang(char lang[])
     while (option != 1 && option != 2 && option != 3)
     {
         clear();
-        if (strcmp(lang, "en_us") == 0) text_en("ChangeLang", "", "", "");
-        else if (strcmp(lang, "pt_br") == 0) text_pt("Mudar Idioma", "", "", "");
+        if (strcmp(lang, "en_us") == 0) text_en("ChangeLang", "", "");
+        else if (strcmp(lang, "pt_br") == 0) text_pt("ChangeLang", "", "");
 
         scanf("%d", &option);
     }
 
     if (option == 1) return "en_us";
     else if (option == 2) return "pt_br";
-    else if (option == 3) return lang;    
+    else return lang;    
 }
 
-void printBoardSet(int config)
+void printBoardSet(int config, char lang[])
 {
     char board[3][3];
-    printf("Esse eh modelo dos campos:\n");
+    if (strcmp(lang, "en_us") == 0) text_en("Play Guide", "", "");
+    else if (strcmp(lang, "pt_br") == 0) text_pt("Play Guide", "", "");
     ChangeBoardSet(board, config);
     printboard(board);
     printf("\n");
 }
 
-void play(char board[3][3], char player_symbol, int config, char Player_name[])
+void play(char board[3][3], char player_symbol, int config, char Player_name[], char lang[])
 {
     int pos;
     int count;
     int move_completed = 0;
-    printf("Jogador %s, escolha sua jogada: ", Player_name);
+    if (strcmp(lang, "en_us") == 0) text_en("Choose Play", Player_name, "");
+    else if (strcmp(lang, "pt_br") == 0) text_pt("Choose Play", Player_name, "");
+    
 
     while(1)
     {
@@ -323,7 +374,12 @@ void play(char board[3][3], char player_symbol, int config, char Player_name[])
             }
             if (move_completed == 1) break;
         }
-        if (move_completed != 1) printf("Jogada invalida!! Escolha outra jogada: ");
+
+        if (move_completed != 1) 
+            {
+                if (strcmp(lang, "en_us") == 0) text_en("Invalid Play", "", "");
+                else if (strcmp(lang, "pt_br") == 0) text_pt("Invalid Play", "", "");
+            }
     }
 }
 
@@ -520,16 +576,16 @@ int main()
             do
             {
                 clear();
-                printBoardSet(storeBoardConfig);
+                printBoardSet(storeBoardConfig, lang);
                 printboard(board);
                 int even = PlayCount % 2 == 0;
                 if (even){
-                    if (storeGameMode == 1 || storeGameMode == 2) play(board, 'O', storeBoardConfig, PlayerO);
+                    if (storeGameMode == 1 || storeGameMode == 2) play(board, 'O', storeBoardConfig, PlayerO, lang);
                     else if (storeGameMode == 3) BotMove(board, PlayCount, 'O');
                     WinState = check(board, 'O', 2);
                 }
                 else{
-                    if (storeGameMode == 1 || storeGameMode == 3) play(board, 'X', storeBoardConfig, PlayerX);
+                    if (storeGameMode == 1 || storeGameMode == 3) play(board, 'X', storeBoardConfig, PlayerX, lang);
                     else if (storeGameMode == 2) BotMove(board, PlayCount, 'X');
                     WinState = check(board, 'X', 1);
                 }
@@ -541,18 +597,22 @@ int main()
 
             if (WinState == 0)
             {
-                printf("\nDeu velha! ");
+                if (strcmp(lang, "en_us") == 0) text_en("Tie", "", "");
+                else if (strcmp(lang, "pt_br") == 0) text_pt("Tie", "", "");
             }
             else if(WinState == 1)
             {
-                printf("\nO jogador X GANHOUU!!! ");
+                if (strcmp(lang, "en_us") == 0) text_en("Win", PlayerX, "");
+                else if (strcmp(lang, "pt_br") == 0) text_pt("Win", PlayerX, "");
             }
             else if (WinState == 2)
             {
-                printf("\nO jogador O GANHOUU!!! ");
+                if (strcmp(lang, "en_us") == 0) text_en("Win", PlayerO, "");
+                else if (strcmp(lang, "pt_br") == 0) text_pt("Win", PlayerO, "");
             }
 
-            printf("Deseja jogar novamente? [s/n]: ");
+            if (strcmp(lang, "en_us") == 0) text_en("Play Again", "", "");
+            else if (strcmp(lang, "pt_br") == 0) text_pt("Play Again", "", "");
             scanf(" %c", &PlayAgain);
         } while (PlayAgain == 's' || PlayAgain == 'S' || PlayAgain == 'y' || PlayAgain == 'Y');
     }
